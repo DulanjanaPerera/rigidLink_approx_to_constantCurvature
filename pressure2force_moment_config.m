@@ -15,7 +15,8 @@ function [f, my, mx, theta, phi] = pressure2force_moment_config(p, A, r, K)
 %   theta   : bending direction [constant] (rad)
 %   phi     : bending amount [constant] (rad)
 
-f = p(1)*A*r + p(2)*A*r + p(3)*A*r;
+% f = p(1)*A*r + p(2)*A*r + p(3)*A*r;
+f = p(1)*A + p(2)*A + p(3)*A;
 my = -(A * r * (-p(2) - p(3) + 2 * p(1))) / 0.2e1;
 mx = A * r * sqrt(0.3e1) * (p(2) - p(3)) / 0.2e1;
 theta = atan2(-A * r * sqrt(0.3e1) * (p(2) - p(3)) / 0.2e1, -A * r * (-p(2) - p(3) + 0.2e1 * p(1)) / 0.2e1);
