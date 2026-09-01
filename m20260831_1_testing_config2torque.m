@@ -1,14 +1,14 @@
 clear
 A = pi * (0.013/2)^2;
 r = 0.013;
-K = 0.002;
-N = 1;
-L = 0.27;
+K = 0.00001;
+N = 30;
+L = 0.29;
 l = L/N;
 
 p=[0.001;0.01;0.01];
-phi = linspace(0.01, pi/2, 500);
-theta = linspace(0, pi, 500);
+phi = linspace(pi, pi, 500);
+theta = linspace(0, 0, 500);
 % theta(1) = 0;
 bend = zeros(size(phi));
 dir = zeros(size(phi));
