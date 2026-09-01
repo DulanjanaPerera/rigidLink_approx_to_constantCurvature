@@ -120,3 +120,30 @@ fprintf('Final required spring torque   = %.4f N*m\n',tau_spring(end));
 fprintf('Final computed first torque    = %.4f N*m\n',tau_total(iBase,end));
 fprintf('Final joint-torque range       = %.4f to %.4f N*m\n', ...
     min(tau_total(:,end)),max(tau_total(:,end)));
+
+
+% Equivalent stiffness required at every phi joint
+
+valid = phi > 1e-4;
+
+phi_valid = reshape(phi(valid),1,[]);
+q_phi_des = phi_valid/(2*N);
+
+% Explicitly repeat q_phi_des for all 58 phi joints
+q_matrix = repmat(q_phi_des,2*N,1);
+
+k_equiv = tau_total(:,valid)./q_matrix;
+
+figure;
+plot(phi_valid,k_equiv(1,:),'LineWidth',1.5);
+hold on;
+plot(phi_valid,k_equiv(round(end/2),:),'LineWidth',1.5);
+plot(phi_valid,k_equiv(end,:),'LineWidth',1.5);
+yline(k_joint,'k--','Current stiffness');
+hold off;
+
+grid on;
+xlabel('\Phi [rad]');
+ylabel('Equivalent joint stiffness [N m/rad]');
+legend('Base joint','Middle joint','Tip joint','Current stiffness');
+title('Equivalent stiffness required for constant curvature');
