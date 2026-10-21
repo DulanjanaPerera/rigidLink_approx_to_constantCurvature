@@ -1,4 +1,5 @@
 function [f, my, mx, theta, phi] = pressure2force_moment_config(p, A, r, K)
+%#codegen
 % THis function computes moments around the backbone in x-axis and y-axis.
 % Also it computes the configuration parameters of the CC arc.
 % 
